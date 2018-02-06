@@ -23,13 +23,19 @@
 	</div>
 </template>
 
-
 <script>
 import ReconConsoleToolbar from "./ReconConsoleToolbar";
 import FilterDialog from "./FilterDialog";
 
 export default {
 	components: {ReconConsoleToolbar, FilterDialog},
+	mounted: function() {
+		window.addEventListener('resize.', this.fitToContainer.bind(this, this.$el));
+		//this.fitToContainer(this.$el);
+	},
+	beforeDestroy: function() {
+		window.removeEventListener('resize', this.fitToContainer);
+	},
 	props: [ 'filterList', 'accessLevelList' ],
 	data: function() {
 		return {
@@ -49,6 +55,16 @@ export default {
 				default:
 					break;
 			}
+		},
+		fitToContainer: function(el) {
+			var elHorizontalBorderWidth = el.offsetWidth - el.clientWidth,
+				elVerticalBorderWidth = el.offsetHeight - el.clientHeight;
+
+			el.style.width = el.parentNode.clientWidth - elHorizontalBorderWidth + "px";
+			el.style.height = el.parentNode.clientHeight - elVerticalBorderWidth + "px";
+		},
+		onResize: function() {
+			this.fitToContainer(this.$el);
 		}
 	}
 }
@@ -64,6 +80,7 @@ export default {
 }
 
 .view-wrapper {
+	border: 1px solid #888;
 	height: 100%;
 }
 .view-wrapper .bordered-container {

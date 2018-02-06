@@ -61,7 +61,7 @@ export default {
 <style type="text/css">
 
 .filter-dialog-wrapper {
-	background-color: rgba(0,0,0,.25);
+	background-color: rgba(0,0,0,.5);
 	height: 100%;
 	left: 0px;
 	position: absolute;

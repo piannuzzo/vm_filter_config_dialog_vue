@@ -27,17 +27,12 @@ export default {
 
 <style>
 
-HTML, BODY {
+HTML, BODY, #app {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
-}
-
-#app {
-	margin: auto;
-	height: 100%;
-	width: 100%;
+	overflow: hidden;
 }
 
 </style>
